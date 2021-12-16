@@ -7,6 +7,9 @@ en:
       account:
         one:                    Account
         other:                  Accounts
+      partner:
+        one:                    Partner
+        other:                  Partners
       sample:
         one:                    Sample
         other:                  Samples
@@ -15,17 +18,24 @@ en:
       user:
         role:                   Role
         last_name:              Last Name
-        first_name:             First Name
+        first_name:              First Name
         email:                  Email
         password:               Password
-        password_confirmation:  Password confirmation
+        password_confirmation:   Password confirmation
         status:                 Status
       account:
         email:                  Email
         name:                   Name
         nickname:               Nickname
         password:               Password
-        password_confirmation:  Password confirmation
+        password_confirmation:   Password confirmation
+      partner:
+        name:                   Name
+        code:                   code
+        kind:                   Kind
+        role:                   Role
+        url:                    URL
+        comment:                Comment
       sample:
         name:                   Name
         title:                  Title

@@ -1,0 +1,38 @@
+.container
+  %h1= t Partner.model_name.human
+  %table.table.table-striped
+    %tbody
+      - @partner.attributes.each do |key, value|
+        - unless key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at'
+          %tr
+            - if key == 'status'
+              %td= t 'status.status'
+              %td= status_mark @partner.status
+            - elsif key == 'ancestry'
+              - if @partner.parent.present?
+                %td= t 'tree.parent'
+                - if Partner.column_names.include? 'title'
+                  %td= "#{@partner.parent.title} (id: #{@partner.ancestry})"
+                - elsif Partner.column_names.include? 'name'
+                  %td= "#{@partner.parent.name} (id: #{@partner.ancestry})"
+                - else
+                  %td= "#{@partner.ancestry})"
+              - if @partner.children.present?
+                %tr
+                  %td= t 'tree.children'
+                  %td
+                    - @partner.children.each do |child|
+                      - if Partner.column_names.include? 'title'
+                        = "#{child.title} (id=#{child.id})"
+                      - elsif Partner.column_names.include? 'name'
+                        = "#{child.name} (id=#{child.id})"
+                      - else
+                        = "#{child.id}"
+                      - unless child == @partner.children.last
+                        %br
+            - else
+              %td= t "activerecord.attributes.partner.#{key}"
+              %td= value
+      = render 'admin/shared/show_images', object: @partner
+  = render 'admin/shared/show_rich_text_content', object: @partner
+  = render 'admin/shared/show_actions', object: @partner

@@ -7,6 +7,9 @@ ru:
       account:
         one:                    Аккаунт
         other:                  Аккаунты
+      partner:
+        one:                    Партнер
+        other:                  Партнеры
       sample:
         one:                    Образец
         other:                  Образцы
@@ -15,17 +18,24 @@ ru:
       user:
         role:                   Роль
         last_name:              Фамилия
-        first_name:             Имя
+        first_name:              Имя
         email:                  Э/почта
         password:               Пароль
-        password_confirmation:  Подтверждение пароля
+        password_confirmation:   Подтверждение пароля
         status:                 Status
       account:
         email:                  Э/почта
         name:                   Имя
         nickname:               Псевдоним
         password:               Пароль
-        password_confirmation:  Подтверждение пароля
+        password_confirmation:   Подтверждение пароля
+      partner:
+        name:                   Имя
+        code:                   Код
+        kind:                   Тип
+        role:                   Роль
+        url:                    URL
+        comment:                Комментарий
       sample:
         name:                   Имя
         title:                  Наименование
