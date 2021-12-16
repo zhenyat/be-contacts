@@ -1,3 +1,5 @@
+/ Updated for Bootstrap 5
+
 %nav.navbar.navbar-expand-lg.navbar-light.bg-faded
   .container-fluid
     / Brand (App Home Page)
@@ -32,8 +34,7 @@
             = t(:data)
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             .dropdown-item
-              = link_to t(:dummy), '#'
-              /= link_to t(Category.model_name.human(count: 2)),  admin_categories_path
+              = link_to t(Account.model_name.human(count: 2)),  admin_accounts_path
             .dropdown-item
               = link_to t(Sample.model_name.human(count: 2)), admin_samples_path
             .dropdown-divider
