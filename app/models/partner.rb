@@ -1,20 +1,19 @@
 ################################################################################
 # Model:  Partner
 #
-# Purpose:
-#
 # Partner attributes:
 #   name      - string,  not NULL, unique
 #   code      - string,  not NULL, unique
-#   kind      - enum
-#   role      - enum
+#   title     - string,  not NULL, unique
+#   kind      - enum {zao | individual | oao | ooo (default) | pao}
+#   role      - enum {supplier (default) | market_place | service_provider | subcontractor}
 #   phone     - string
 #   email     - string,  not NULL, unique 
 #   url       - string
- #  inn       - string
+#   inn       - string,  not NULL, unique 
 #   kpp       - string
-#   ogrn      - string
-#   ogrnip    - string
+#   ogrn      - string, not null, unique for kind != 'individual'
+#   ogrnip    - string, not null, unique for kind = 'individual'
 #   okpo      - string
 #   okato     - string
 #   certificate_number - string
