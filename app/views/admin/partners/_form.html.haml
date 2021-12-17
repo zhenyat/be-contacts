@@ -8,9 +8,19 @@
           = render 'admin/shared/form_ancestry', f: f, object: @partner
           = f.input :name
           = f.input :code
+          = f.input :title
           = f.input :kind, include_blank: false
           = f.input :role, include_blank: false
+          = f.input :email
           = f.input :url
+          = f.input :inn
+          = f.input :kpp
+          = f.input :ogrn
+          = f.input :ogrnip
+          = f.input :okpo
+          = f.input :okato
+          = f.input :certificate_number
+          = f.input :certificate_date
 
           = f.input :status, default: 0
           /= render 'admin/shared/status_buttons', f: f

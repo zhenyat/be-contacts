@@ -3,17 +3,37 @@
 one:
   name: MyString
   code: MyString
+  title: MyString
   kind: 1
   role: 1
+  email: MyString
   url: MyString
+  inn: MyString
+  kpp: MyString
+  ogrn: MyString
+  ogrnip: MyString
+  okpo: MyString
+  okato: MyString
+  certificate_number: MyString
+  certificate_date: 2021-12-17
   status: 1
   comment: MyText
 
 two:
   name: MyString
   code: MyString
+  title: MyString
   kind: 1
   role: 1
+  email: MyString
   url: MyString
+  inn: MyString
+  kpp: MyString
+  ogrn: MyString
+  ogrnip: MyString
+  okpo: MyString
+  okato: MyString
+  certificate_number: MyString
+  certificate_date: 2021-12-17
   status: 1
   comment: MyText

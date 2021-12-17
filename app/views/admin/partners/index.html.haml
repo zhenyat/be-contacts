@@ -4,9 +4,19 @@
     %tr
       %th= Partner.human_attribute_name(:name)
       %th= Partner.human_attribute_name(:code)
+      %th= Partner.human_attribute_name(:title)
       %th= Partner.human_attribute_name(:kind)
       %th= Partner.human_attribute_name(:role)
+      %th= Partner.human_attribute_name(:email)
       %th= Partner.human_attribute_name(:url)
+      %th= Partner.human_attribute_name(:inn)
+      %th= Partner.human_attribute_name(:kpp)
+      %th= Partner.human_attribute_name(:ogrn)
+      %th= Partner.human_attribute_name(:ogrnip)
+      %th= Partner.human_attribute_name(:okpo)
+      %th= Partner.human_attribute_name(:okato)
+      %th= Partner.human_attribute_name(:certificate_number)
+      %th= Partner.human_attribute_name(:certificate_date)
       %th= Partner.human_attribute_name(:comment)
       %th= t 'status.status'
       %th= t 'actions.actions'
@@ -16,9 +26,19 @@
       %tr
         %td= partner.name
         %td= partner.code
+        %td= partner.title
         %td= partner.kind
         %td= partner.role
+        %td= partner.email
         %td= partner.url
+        %td= partner.inn
+        %td= partner.kpp
+        %td= partner.ogrn
+        %td= partner.ogrnip
+        %td= partner.okpo
+        %td= partner.okato
+        %td= partner.certificate_number
+        %td= partner.certificate_date
         %td= status_mark partner.status
         %td= partner.comment
         %td= render 'admin/shared/index_buttons', resource: partner
