@@ -36,7 +36,8 @@ class Partner < ApplicationRecord
   enum role:   %w(supplier market_place service_provider subcontractor)
   enum status: %w(active archived)
 
-  before_create :generate_dummy_email
+  after_validation :generate_dummy_email
+  # or this:  before_create :generate_dummy_email 
 
   validates :name,  presence: true, uniqueness: true 
   validates :code,  presence: true, uniqueness: true
