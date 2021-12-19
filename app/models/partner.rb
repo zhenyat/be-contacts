@@ -26,8 +26,7 @@
 class Partner < ApplicationRecord
   include Emailable
   include ImagesHandleable
-  # include Detailable
-
+  
   has_many :addresses
   has_many :banks
   has_many :contacts
@@ -37,12 +36,12 @@ class Partner < ApplicationRecord
   enum role:   %w(supplier market_place service_provider subcontractor)
   enum status: %w(active archived)
 
-  before_validation :generate_dummy_email, on: [:create, :update]
+  before_create :generate_dummy_email
 
-  validates :name,  presence: true, uniqueness: true
+  validates :name,  presence: true, uniqueness: true 
   validates :code,  presence: true, uniqueness: true
   validates :title, presence: true, uniqueness: true
-  validates :inn,   presence: true, uniqueness: true
+  validates :inn,   presence: true, uniqueness: {case_sensitive: false} 
 
   validate :inn_digits_length
   validate :individual_enterpreuner_orgnip
@@ -98,7 +97,7 @@ class Partner < ApplicationRecord
 
   private
   def generate_dummy_email  # email MUST BE (at least dummy)
-    # self - must be here!
+    # 'self' - must be used here! (?)
     self.email = "#{self.code}@dummy.su" if self.email.nil? or self.email.blank?
   end
 end
