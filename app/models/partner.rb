@@ -8,7 +8,7 @@
 #   kind      - enum {zao | individual | oao | ooo (default) | pao}
 #   role      - enum {supplier (default) | market_place | service_provider | subcontractor}
 #   phone     - string
-#   email     - string,  not NULL, unique 
+#   email     - string,  not NULL, unique (assigned with dummy value if not existin)
 #   url       - string
 #   inn       - string,  not NULL, unique 
 #   kpp       - string
@@ -21,14 +21,14 @@
 #   status    - enum { active (0) | archived (1) }
 #   comment   - text
 #
-#  17.12.2021 ZT
+#   17.12.2021  ZT
+#   20.12.2021  Last update
 ################################################################################
 class Partner < ApplicationRecord
   include Emailable
   include ImagesHandleable
   
   has_many :addresses
-  has_many :banks
   has_many :contacts
   has_many :phones
 
@@ -36,18 +36,19 @@ class Partner < ApplicationRecord
   enum role:   %w(supplier market_place service_provider subcontractor)
   enum status: %w(active archived)
 
-  after_validation :generate_dummy_email
-  # or this:  before_create :generate_dummy_email 
+  before_validation :generate_dummy_email
 
-  validates :name,  presence: true, uniqueness: true 
-  validates :code,  presence: true, uniqueness: true
-  validates :title, presence: true, uniqueness: true
-  validates :inn,   presence: true, uniqueness: {case_sensitive: false} 
+  validates :name,    presence: true, uniqueness: true 
+  validates :code,    presence: true, uniqueness: true
+  validates :title,   presence: true, uniqueness: true
+  validates :inn,     presence: true, uniqueness: {case_sensitive: false} 
+  validates :ogrn,    presence: true, uniqueness: true, format: {with: /\A[\d+]{13}\Z/, message: 'must be 13 digits'}, if: -> {!individual?}
+  validates :ogrnip,  presence: true, uniqueness: true, format: {with: /\A[\d+]{15}\Z/, message: 'must be 15 digits'}, if: -> {individual?}
+  validates :kpp,     uniqueness: true, format: {with: /\A[\d+]{9}\Z/, message: "must be 9 digits"}, if: -> {kpp.present?}
 
   validate :inn_digits_length
   validate :individual_enterpreuner_orgnip
-  validate :kpp_digits_length
-  validate :ogrn_digits_length
+  validate :legal_ogrn
   validate :okpo_digits_length
 
   def ogrn_control_digit_test_passed? ogrn
@@ -59,8 +60,8 @@ class Partner < ApplicationRecord
 
   def individual_enterpreuner_orgnip
     if individual?
-      errors.add(:ogrnip, "apply OGRNIP")      unless ogrnip.present?
-      errors.add(:ogrnip, "must be 15 digits") unless ogrnip =~ /\A[\d+]{15}\Z/
+      # errors.add(:ogrnip, "apply OGRNIP")      unless ogrnip.present?
+      errors.add(:ogrn, "OGRN is not allowed")  if ogrn.present?
       errors.add(:ogrnip, "control digit test not passed") unless ogrn_control_digit_test_passed?(ogrnip)
     end
   end
@@ -73,16 +74,12 @@ class Partner < ApplicationRecord
     end
   end
 
-  def kpp_digits_length
-    if kpp.present?  # 9 digits
-      errors.add(:kpp, 'must be 12 digits') unless kpp =~ /\A[\d+]{9}\Z/
-    end
-  end
-
-  def ogrn_digits_length
-    if !individual? and ogrn.present?
-      errors.add(:ogrn, "must be 13 digits") unless ogrn =~ /\A[\d+]{13}\Z/
-      errors.add(:ogrn, "control digit test not passed") unless ogrn_control_digit_test_passed?(ogrn)
+  def legal_ogrn
+    if !individual?
+      errors.add(:ogrnip, "OGRNIP is not allowed")  if ogrnip.present?
+      if ogrn.present?
+        errors.add(:ogrn, "control digit test not passed") unless ogrn_control_digit_test_passed?(ogrn)
+      end
     end
   end
 
@@ -97,8 +94,8 @@ class Partner < ApplicationRecord
   end
 
   private
-  def generate_dummy_email  # email MUST BE (at least dummy)
+  def generate_dummy_email  # email MUST be assigned if not existing
     # 'self' - must be used here! (?)
-    self.email = "#{self.code}@dummy.su" if self.email.nil? or self.email.blank?
+    self.email = "#{self.code}@dummy.su" if self.email.blank? # if email is nil or ''
   end
 end
