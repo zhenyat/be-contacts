@@ -32,7 +32,7 @@ ru:
       partner:
         name:                   Имя
         code:                   Код
-        kind:                   Форма юр.лица
+        kind:                   Форма юридического лица
         role:                   Роль партнера
         title:                  Полное название
         inn:                    ИНН
@@ -46,12 +46,18 @@ ru:
         certificate_number:      Номер Свидетельства
         certificate_date:        Дата выдачи Свидетельства
         comment:                Комментарий
-        kinds:
+
+        kind_list:
           zao:                    ЗАО
           individual:             ИП
           oao:                    ОАО
           ooo:                    ООО
           pao:                    ПАО
+        role_list:
+          supplier:               Поставщик
+          market_place:           Маркетплейс
+          service_provider:       Поставщик услуг
+          subcontractor:          Субподрядчик
 
       sample:
         name:                   Имя
@@ -60,9 +66,3 @@ ru:
         price:                  Цена
         quantity:               Количество
         status:                 Статус
-
-  # zao:                    ЗАО
-  # individual:             ИП
-  # oao:                    ОАО
-  # ooo:                    ОО
-  # pao:                    ПАО

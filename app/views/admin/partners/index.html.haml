@@ -13,10 +13,10 @@
       %th= Partner.human_attribute_name(:kpp)
       %th= Partner.human_attribute_name(:ogrn)
       %th= Partner.human_attribute_name(:ogrnip)
-      %th= Partner.human_attribute_name(:okpo)
-      %th= Partner.human_attribute_name(:okato)
-      %th= Partner.human_attribute_name(:certificate_number)
-      %th= Partner.human_attribute_name(:certificate_date)
+      -# %th= Partner.human_attribute_name(:okpo)
+      -# %th= Partner.human_attribute_name(:okato)
+      -# %th= Partner.human_attribute_name(:certificate_number)
+      -# %th= Partner.human_attribute_name(:certificate_date)
       %th= Partner.human_attribute_name(:comment)
       %th= t 'status.status'
       %th= t 'actions.actions'
@@ -35,12 +35,12 @@
         %td= partner.kpp
         %td= partner.ogrn
         %td= partner.ogrnip
-        %td= partner.okpo
-        %td= partner.okato
-        %td= partner.certificate_number
-        %td= partner.certificate_date
-        %td= status_mark partner.status
+        -# %td= partner.okpo
+        -# %td= partner.okato
+        -# %td= partner.certificate_number
+        -# %td= partner.certificate_date
         %td= partner.comment
+        %td= status_mark partner.status
         %td= render 'admin/shared/index_buttons', resource: partner
 %br
 .row

@@ -25,6 +25,8 @@
 #   20.12.2021  Last update
 ################################################################################
 class Partner < ApplicationRecord
+  include TranslateEnum
+
   include Emailable
   include ImagesHandleable
   
@@ -35,6 +37,9 @@ class Partner < ApplicationRecord
   enum kind:   %w(zao individual oao ooo pao) #%w(ЗАО ИП ОАО ООО ПАО)
   enum role:   %w(supplier market_place service_provider subcontractor)
   enum status: %w(active archived)
+
+  translate_enum :kind
+  translate_enum :role
 
   before_validation :generate_dummy_email
 
@@ -93,11 +98,6 @@ class Partner < ApplicationRecord
         errors.add(:okpo, 'must be 8 digits')  unless okpo =~ /\A[\d+]{8}\Z/
       end
     end
-  end
-
-  def kinds_hash_localized
-    # I18n.t Partner.kinds.sort { |a,b| a <=> b }
-    (I18n.t 'activerecord.attributes.partner.kinds').sort{|a,b| a<=> b}
   end
 
   private

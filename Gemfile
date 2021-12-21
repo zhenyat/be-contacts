@@ -58,6 +58,7 @@
 #   13.11.2021  gems 'securerandom' & 'countries' added
 #   03.12.2021  Ruby 3.0.3
 #   12.12.2021  Pattern for Gemfile
+#   21.12.2021  gem 'translate_enum' added
 ################################################################################
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -84,6 +85,7 @@ gem 'bootsnap', require: false     # Reduces boot times through caching; require
 
 gem 'simple_form'                  # https://github.com/plataformatec/simple_form
 gem 'enum_help'                    # MUST BE for simple form
+gem 'translate_enum'
 gem 'haml-rails'                   # https://github.com/indirect/haml-rails
 gem 'pundit'                       # https://github.com/elabs/pundit
 gem 'countries'
