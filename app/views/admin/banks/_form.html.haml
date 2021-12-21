@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-ms-6
+      = simple_form_for([:admin, @bank], html: {multipart: true}) do |f|
+        = f.error_notification message: t('messages.error_notification')
+
+        .form-inputs
+          = render 'admin/shared/form_ancestry', f: f, object: @bank
+          = f.input :name
+          = f.input :title
+          = f.input :brief_title
+          = f.input :legal_address
+          = f.input :postal_address
+          = f.input :phone
+          = f.input :email
+          = f.input :url
+          = f.input :corr_acc
+          = f.input :corr_acc_with
+          = f.input :bic
+          = f.input :inn
+          = f.input :kpp
+          = f.input :ogrn
+          = f.input :okpo
+          = f.input :okato
+          = f.input :comment
+
+          = f.input :status, default: 0
+          /= render 'admin/shared/status_buttons', f: f
+
+          = render 'admin/shared/form_rich_text_content', f: f, object: @bank
+          = render 'admin/shared/form_images', f: f, object: @bank
+          = render 'admin/shared/form_actions', f: f, object: @bank

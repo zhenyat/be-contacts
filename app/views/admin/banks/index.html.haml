@@ -1,0 +1,50 @@
+%h1= t Bank.model_name.human(count: 2)
+%table.table.table-hover
+  %thead
+    %tr
+      %th= Bank.human_attribute_name(:name)
+      %th= Bank.human_attribute_name(:title)
+      %th= Bank.human_attribute_name(:brief_title)
+      %th= Bank.human_attribute_name(:legal_address)
+      %th= Bank.human_attribute_name(:postal_address)
+      %th= Bank.human_attribute_name(:phone)
+      %th= Bank.human_attribute_name(:email)
+      %th= Bank.human_attribute_name(:url)
+      %th= Bank.human_attribute_name(:corr_acc)
+      %th= Bank.human_attribute_name(:corr_acc_with)
+      %th= Bank.human_attribute_name(:bic)
+      %th= Bank.human_attribute_name(:inn)
+      %th= Bank.human_attribute_name(:kpp)
+      %th= Bank.human_attribute_name(:ogrn)
+      %th= Bank.human_attribute_name(:okpo)
+      %th= Bank.human_attribute_name(:okato)
+      %th= Bank.human_attribute_name(:comment)
+      %th= t 'status.status'
+      %th= t 'actions.actions'
+
+  %tbody
+    - @banks.each do |bank|
+      %tr
+        %td= bank.name
+        %td= bank.title
+        %td= bank.brief_title
+        %td= bank.legal_address
+        %td= bank.postal_address
+        %td= bank.phone
+        %td= bank.email
+        %td= bank.url
+        %td= bank.corr_acc
+        %td= bank.corr_acc_with
+        %td= bank.bic
+        %td= bank.inn
+        %td= bank.kpp
+        %td= bank.ogrn
+        %td= bank.okpo
+        %td= bank.okato
+        %td= bank.comment
+        %td= status_mark bank.status
+        %td= render 'admin/shared/index_buttons', resource: bank
+%br
+.row
+  .col-md-2
+    = link_to t('actions.create'), new_admin_bank_path, class: 'btn btn-primary btn-sm'

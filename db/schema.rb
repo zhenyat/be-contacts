@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_095506) do
+ActiveRecord::Schema.define(version: 2021_12_21_180104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -79,6 +79,35 @@ ActiveRecord::Schema.define(version: 2021_12_17_095506) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "banks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "title", null: false
+    t.string "brief_title"
+    t.string "legal_address"
+    t.string "postal_address"
+    t.string "phone"
+    t.string "email", null: false
+    t.string "url"
+    t.string "corr_acc", null: false
+    t.string "corr_acc_with", null: false
+    t.string "bic", null: false
+    t.string "inn", null: false
+    t.string "kpp"
+    t.string "ogrn"
+    t.string "okpo"
+    t.string "okato"
+    t.string "comment"
+    t.integer "status", limit: 2, default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bic"], name: "index_banks_on_bic", unique: true
+    t.index ["corr_acc"], name: "index_banks_on_corr_acc", unique: true
+    t.index ["email"], name: "index_banks_on_email", unique: true
+    t.index ["inn"], name: "index_banks_on_inn", unique: true
+    t.index ["name"], name: "index_banks_on_name", unique: true
+    t.index ["title"], name: "index_banks_on_title", unique: true
+  end
+
   create_table "partners", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "code", null: false
@@ -104,6 +133,15 @@ ActiveRecord::Schema.define(version: 2021_12_17_095506) do
     t.index ["inn"], name: "index_partners_on_inn", unique: true
     t.index ["name"], name: "index_partners_on_name", unique: true
     t.index ["title"], name: "index_partners_on_title", unique: true
+  end
+
+  create_table "phones", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "number", null: false
+    t.integer "kind", limit: 2, default: 0, null: false
+    t.integer "status", limit: 2, default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["number"], name: "index_phones_on_number", unique: true
   end
 
   create_table "samples", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

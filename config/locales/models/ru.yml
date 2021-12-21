@@ -7,6 +7,9 @@ ru:
       account:
         one:                    Аккаунт
         other:                  Аккаунты
+      bank:
+        one:                    Банк
+        other:                  Банки
       partner:
         one:                    Партнер
         other:                  Партнеры
@@ -29,6 +32,24 @@ ru:
         nickname:               Псевдоним
         password:               Пароль
         password_confirmation:   Подтверждение пароля
+      bank:
+        name:                   Имя
+        title:                  Полное наименование
+        brief_title:            Краткое наименование
+        inn:                    ИНН
+        url:                    URL
+        phone:                  Телефон
+        email:                  Э/почта
+        legal_address:          Юридический адрес
+        postal_address:         Почтовый адрес
+        bic:                    БИК
+        corr_acc:               Корр. счет
+        corr_acc_with:          Подразделение ЦБ РФ
+        kpp:                    КПП
+        ogrn:                   ОГРН
+        okpo:                   ОКПО
+        okato:                  ОКАТО
+        comment:                Комментарий
       partner:
         name:                   Имя
         code:                   Код
@@ -37,7 +58,7 @@ ru:
         title:                  Полное название
         inn:                    ИНН
         url:                    URL
-        email:                  Э/очта
+        email:                  Э/почта
         kpp:                    КПП
         ogrn:                   ОГРН
         ogrnip:                 ОГРНИП

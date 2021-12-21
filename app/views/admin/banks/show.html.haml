@@ -1,0 +1,38 @@
+.container
+  %h1= t Bank.model_name.human
+  %table.table.table-striped
+    %tbody
+      - @bank.attributes.each do |key, value|
+        - unless key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at'
+          %tr
+            - if key == 'status'
+              %td= t 'status.status'
+              %td= status_mark @bank.status
+            - elsif key == 'ancestry'
+              - if @bank.parent.present?
+                %td= t 'tree.parent'
+                - if Bank.column_names.include? 'title'
+                  %td= "#{@bank.parent.title} (id: #{@bank.ancestry})"
+                - elsif Bank.column_names.include? 'name'
+                  %td= "#{@bank.parent.name} (id: #{@bank.ancestry})"
+                - else
+                  %td= "#{@bank.ancestry})"
+              - if @bank.children.present?
+                %tr
+                  %td= t 'tree.children'
+                  %td
+                    - @bank.children.each do |child|
+                      - if Bank.column_names.include? 'title'
+                        = "#{child.title} (id=#{child.id})"
+                      - elsif Bank.column_names.include? 'name'
+                        = "#{child.name} (id=#{child.id})"
+                      - else
+                        = "#{child.id}"
+                      - unless child == @bank.children.last
+                        %br
+            - else
+              %td= t "activerecord.attributes.bank.#{key}"
+              %td= value
+      = render 'admin/shared/show_images', object: @bank
+  = render 'admin/shared/show_rich_text_content', object: @bank
+  = render 'admin/shared/show_actions', object: @bank
