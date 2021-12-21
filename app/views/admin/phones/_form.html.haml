@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-ms-6
+      = simple_form_for([:admin, @phone], html: {multipart: true}) do |f|
+        = f.error_notification message: t('messages.error_notification')
+
+        .form-inputs
+          = render 'admin/shared/form_ancestry', f: f, object: @phone
+          = f.input :number
+          /= f.input :kind, include_blank: false
+          = f.label t('activerecord.attributes.phone.kind')
+          = f.select :kind, options_for_select(f.object.class.translated_kinds.map { |translation, k, _v| [translation, k] })
+          /= f.select :status, options_for_select(f.object.class.translated_statuses.map { |translation, k, _v| [translation, k] })
+          = f.input :status, default: 0
+          /= render 'admin/shared/status_buttons', f: f
+
+          = render 'admin/shared/form_rich_text_content', f: f, object: @phone
+          = render 'admin/shared/form_images', f: f, object: @phone
+          = render 'admin/shared/form_actions', f: f, object: @phone

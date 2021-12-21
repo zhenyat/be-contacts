@@ -84,6 +84,7 @@ gem 'bootsnap', require: false     # Reduces boot times through caching; require
 
 gem 'simple_form'                  # https://github.com/plataformatec/simple_form
 gem 'enum_help'                    # MUST BE for simple form
+gem 'translate_enum'
 gem 'haml-rails'                   # https://github.com/indirect/haml-rails
 gem 'pundit'                       # https://github.com/elabs/pundit
 gem 'countries'

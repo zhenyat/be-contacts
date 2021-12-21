@@ -53,6 +53,15 @@ ru:
           ooo:                    ООО
           pao:                    ПАО
 
+      phone:
+        number:                 Номер
+        kind:                   Тип
+        status:                 Статус
+        kind_list:
+          mobile:               Мобильный
+          home:                 Домашний
+          work:                 рабочий
+
       sample:
         name:                   Имя
         title:                  Наименование
@@ -61,8 +70,7 @@ ru:
         quantity:               Количество
         status:                 Статус
 
-  # zao:                    ЗАО
-  # individual:             ИП
-  # oao:                    ОАО
-  # ooo:                    ОО
-  # pao:                    ПАО
+  attributes:
+    status_list:
+      active:               Активный
+      archived:             Архивный

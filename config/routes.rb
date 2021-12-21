@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :samples
       resources :accounts, only: [:index, :show]
         resources :partners
+        resources :phones
       # Add new admin resources before this line
     end
   

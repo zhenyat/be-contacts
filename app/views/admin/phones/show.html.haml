@@ -1,0 +1,38 @@
+.container
+  %h1= t Phone.model_name.human
+  %table.table.table-striped
+    %tbody
+      - @phone.attributes.each do |key, value|
+        - unless key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at'
+          %tr
+            - if key == 'status'
+              %td= t 'status.status'
+              %td= status_mark @phone.status
+            - elsif key == 'ancestry'
+              - if @phone.parent.present?
+                %td= t 'tree.parent'
+                - if Phone.column_names.include? 'title'
+                  %td= "#{@phone.parent.title} (id: #{@phone.ancestry})"
+                - elsif Phone.column_names.include? 'name'
+                  %td= "#{@phone.parent.name} (id: #{@phone.ancestry})"
+                - else
+                  %td= "#{@phone.ancestry})"
+              - if @phone.children.present?
+                %tr
+                  %td= t 'tree.children'
+                  %td
+                    - @phone.children.each do |child|
+                      - if Phone.column_names.include? 'title'
+                        = "#{child.title} (id=#{child.id})"
+                      - elsif Phone.column_names.include? 'name'
+                        = "#{child.name} (id=#{child.id})"
+                      - else
+                        = "#{child.id}"
+                      - unless child == @phone.children.last
+                        %br
+            - else
+              %td= t "activerecord.attributes.phone.#{key}"
+              %td= value
+      = render 'admin/shared/show_images', object: @phone
+  = render 'admin/shared/show_rich_text_content', object: @phone
+  = render 'admin/shared/show_actions', object: @phone
