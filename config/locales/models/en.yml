@@ -63,22 +63,7 @@ en:
         quantity:               Quantity
         status:                 Status
 
-  attributes:
-    status_list:
+  attributes:     # Multimodel attributes
+    status_list: 
       active:               Available
       archived:             Closed
-
-  # zao:                    ZAO (CJSC - Closed Joint-Stock Company)
-  # individual:             Individual Entrepreneur
-  # oao:                    OAO (OJSC - Open Joint-Stock Company)
-  # ooo:                    OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
-  # pao:                    PAO (PJSC - Public Joint Stock Company)
-
-  # enums:
-  #   partner:
-  #     kind:
-  #       zao:                    ZAO (CJSC - Closed Joint-Stock Company)
-  #       individual:             Individual Entrepreneur
-  #       oao:                    OAO (OJSC - Open Joint-Stock Company)
-  #       ooo:                    OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
-  #       pao:                    PAO (PJSC - Public Joint Stock Company)

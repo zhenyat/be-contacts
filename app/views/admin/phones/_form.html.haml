@@ -7,11 +7,13 @@
         .form-inputs
           = render 'admin/shared/form_ancestry', f: f, object: @phone
           = f.input :number
-          /= f.input :kind, include_blank: false
           = f.label t('activerecord.attributes.phone.kind')
-          = f.select :kind, options_for_select(f.object.class.translated_kinds.map { |translation, k, _v| [translation, k] })
-          /= f.select :status, options_for_select(f.object.class.translated_statuses.map { |translation, k, _v| [translation, k] })
-          = f.input :status, default: 0
+          = f.select :kind, options_for_select(f.object.class.translated_kinds.map { |translation, k, _v| [translation, k] }, @phone.kind), {}, class: "form-control"
+          = f.label t('activerecord.attributes.phone.status')
+          = f.select :status, options_for_select(f.object.class.translated_statuses.map { |translation, k, _v| [translation, k] }, @phone.status), {}, class: "form-control"
+
+          / Obstacle ways for status
+          /= f.input :status, default: 0
           /= render 'admin/shared/status_buttons', f: f
 
           = render 'admin/shared/form_rich_text_content', f: f, object: @phone

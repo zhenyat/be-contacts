@@ -70,7 +70,7 @@ ru:
         quantity:               Количество
         status:                 Статус
 
-  attributes:
+  attributes:     # Multimodel attributes
     status_list:
       active:               Активный
       archived:             Архивный
