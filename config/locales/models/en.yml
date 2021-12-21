@@ -31,14 +31,47 @@ en:
         password_confirmation:   Password confirmation
       partner:
         name:                   Name
-        code:                   code
-        kind:                   Kind
-        role:                   Role
+        code:                   Code
+        kind:                   Legal Entity Form
+        role:                   Partner Role
+        title:                  Title
+        inn:                    INN (Taxpayer Identification Number)
         url:                    URL
+        email:                  Email
+        kpp:                    KPP (Tax Registration Reason Code)
+        ogrn:                   OGRN (Primary State Registration Number
+        ogrnip:                 OGRNIP (Primary State Registration Number of Individual Entrepreneur)
+        okpo:                   OKPO (Russian Business and Organization Classification)
+        okato:                  OKATO (Russian Classification on Objects of Administrative Division)
+        certificate_number:      Certificate Number
+        certificate_date:        Certificate Date
         comment:                Comment
+
+        kinds:
+          zao:                    ZAO (CJSC - Closed Joint-Stock Company)
+          individual:             Individual Entrepreneur
+          oao:                    OAO (OJSC - Open Joint-Stock Company)
+          ooo:                    OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
+          pao:                    PAO (PJSC - Public Joint Stock Company)
+          
       sample:
         name:                   Name
         title:                  Title
         price:                  Price
         quantity:               Quantity
         status:                 Status
+
+  # zao:                    ZAO (CJSC - Closed Joint-Stock Company)
+  # individual:             Individual Entrepreneur
+  # oao:                    OAO (OJSC - Open Joint-Stock Company)
+  # ooo:                    OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
+  # pao:                    PAO (PJSC - Public Joint Stock Company)
+
+  # enums:
+  #   partner:
+  #     kind:
+  #       zao:                    ZAO (CJSC - Closed Joint-Stock Company)
+  #       individual:             Individual Entrepreneur
+  #       oao:                    OAO (OJSC - Open Joint-Stock Company)
+  #       ooo:                    OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
+  #       pao:                    PAO (PJSC - Public Joint Stock Company)

@@ -15,7 +15,7 @@ en:
 
   messages:
     created:        '%{model} was successfully created'
-    confirm:        'Are you sure?'
+    confirm:         'Are you sure?'
     deleted:        '%{model} was successfully deleted'
     updated:        '%{model} was successfully updated'
     uploaded:       File was successfully uploaded
@@ -42,3 +42,4 @@ en:
     ancestries:     Ancestries
     descendant:     Descendant
     descendants:    Descendants
+

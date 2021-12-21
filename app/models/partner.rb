@@ -68,7 +68,9 @@ class Partner < ApplicationRecord
 
   def inn_digits_length
     if individual?   # 12 digit
-      errors.add(:inn, 'must be 12 digits') unless (inn =~ /\A[\d+]{12}\Z/)
+      # errors.add(:inn, I18n.t('errors.messages.length')) unless (inn =~ /\A[\d+]{12}\Z/)
+      errors.add(:inn, I18n.t('errors.attributes.inn.length')) unless (inn =~ /\A[\d+]{12}\Z/)
+      # errors.add(:inn, 'must be 12 digits') unless (inn =~ /\A[\d+]{12}\Z/)
     else             # 10 digits
       errors.add(:inn, 'must be 10 digits') unless (inn =~ /\A[\d+]{10}\Z/)
     end
@@ -91,6 +93,11 @@ class Partner < ApplicationRecord
         errors.add(:okpo, 'must be 8 digits')  unless okpo =~ /\A[\d+]{8}\Z/
       end
     end
+  end
+
+  def kinds_hash_localized
+    # I18n.t Partner.kinds.sort { |a,b| a <=> b }
+    (I18n.t 'activerecord.attributes.partner.kinds').sort{|a,b| a<=> b}
   end
 
   private

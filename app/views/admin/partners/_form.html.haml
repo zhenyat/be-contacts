@@ -9,7 +9,12 @@
           = f.input :name
           = f.input :code
           = f.input :title
-          = f.input :kind, include_blank: false
+          /= f.input :kind, include_blank: false
+          /= f.input :kind, :as => :select, :collection => @partner.kinds_hash_localized, include_blank: false
+          = f.input :kind, as: :select, collection: @partner.kinds_hash_localized.map { |key, val| [val, key] }, include_blank: false
+          /= f.input :kind, :collection => Partner.kinds, include_blank: false#.sort.map {|k,v| [v,k]}
+          /= f.input :kind, :as => :select, :collection => @partner.kinds_array_localized, include_blank: false
+          /= f.select :kind, options_for_select(Partner.kinds.map {|key, value| [key.titleize, Partner.kinds.key(value)]}, @partner.kind)
           = f.input :role, include_blank: false
           = f.input :email
           = f.input :url

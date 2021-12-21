@@ -32,10 +32,27 @@ ru:
       partner:
         name:                   Имя
         code:                   Код
-        kind:                   Тип
-        role:                   Роль
+        kind:                   Форма юр.лица
+        role:                   Роль партнера
+        title:                  Полное название
+        inn:                    ИНН
         url:                    URL
+        email:                  Э/очта
+        kpp:                    КПП
+        ogrn:                   ОГРН
+        ogrnip:                 ОГРНИП
+        okpo:                   ОКПО
+        okato:                  ОКАТО
+        certificate_number:      Номер Свидетельства
+        certificate_date:        Дата выдачи Свидетельства
         comment:                Комментарий
+        kinds:
+          zao:                    ЗАО
+          individual:             ИП
+          oao:                    ОАО
+          ooo:                    ООО
+          pao:                    ПАО
+
       sample:
         name:                   Имя
         title:                  Наименование
@@ -44,3 +61,8 @@ ru:
         quantity:               Количество
         status:                 Статус
 
+  # zao:                    ЗАО
+  # individual:             ИП
+  # oao:                    ОАО
+  # ooo:                    ОО
+  # pao:                    ПАО
