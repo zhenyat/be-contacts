@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_21_180104) do
+ActiveRecord::Schema.define(version: 2021_12_22_114627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -135,6 +135,19 @@ ActiveRecord::Schema.define(version: 2021_12_21_180104) do
     t.index ["title"], name: "index_partners_on_title", unique: true
   end
 
+  create_table "partners_banks", id: false, force: :cascade do |t|
+    t.uuid "partner_id", null: false
+    t.uuid "bank_id", null: false
+    t.string "current_account", null: false
+    t.text "comment"
+    t.integer "status", limit: 2, default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bank_id"], name: "index_partners_banks_on_bank_id"
+    t.index ["current_account"], name: "index_partners_banks_on_current_account", unique: true
+    t.index ["partner_id"], name: "index_partners_banks_on_partner_id"
+  end
+
   create_table "phones", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "number", null: false
     t.integer "kind", limit: 2, default: 0, null: false
@@ -171,4 +184,6 @@ ActiveRecord::Schema.define(version: 2021_12_21_180104) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "partners_banks", "banks"
+  add_foreign_key "partners_banks", "partners"
 end
