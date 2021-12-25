@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  partner: one
+  bank: one
+  account: MyString
+  comment: MyString
+  status: 1
+
+two:
+  partner: two
+  bank: two
+  account: MyString
+  comment: MyString
+  status: 1

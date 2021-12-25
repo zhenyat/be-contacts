@@ -1,0 +1,22 @@
+.container
+  %h1= t PartnerBank.model_name.human
+  %table.table.table-striped
+    %tbody
+      - @partner_bank.attributes.each do |key, value|
+        - unless key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at'
+          %tr
+            - if key == 'status'
+              %td= t 'status.status'
+              %td= status_mark @partner_bank.status
+              %br
+            - else
+              %td= t "activerecord.attributes.partner_bank.#{key}"
+              - if key == 'partner_id'
+                %td= Partner.find(value).title
+              - elsif key == 'bank_id'
+                %td= Bank.find(value).title
+              - else
+                %td= value
+      = render 'admin/shared/show_images', object: @partner_bank
+  = render 'admin/shared/show_rich_text_content', object: @partner_bank
+  = render 'admin/shared/show_actions', object: @partner_bank
