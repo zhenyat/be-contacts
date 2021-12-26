@@ -35,6 +35,27 @@ begin
     okato:          '45277586000',
     comment:        'Контакты для (малого) бизнеса'
 
+    if 1 == 2 # Fake for testing
+      Bank.create name: "looser", 
+      title:          'Закрытое акционерное общество «Лузер Банк»',
+      brief_title:    'ЗАО «Лузер Банк»',
+      legal_address:  '123456, г. Москва, Виртуальная ул, д. 11',
+      postal_address: '123456, г. Москва, Красная пл, д.5 ',
+      phone:          '+74951234567',
+      email:          'biz@lb.ru',
+      url:            'https://www.lb.ru',
+      corr_acc:       '30101810145250000974', 
+      corr_acc_with:  'ГУ Банка России по ЦФО',
+      bic:            '044525974',
+      inn:            '9047966340',
+      kpp:            '012701909',
+      ogrn:           '2067925009470',
+      # okpo:           '',
+      # okato:          '',
+      comment:        'Контакты для (малого) бизнеса'
+  
+    end
+
     puts "===== 'Bank' record(s) created"
   else
     puts "===== 'Bank' seeding skipped"

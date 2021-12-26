@@ -16,6 +16,8 @@ class PartnerBank < ApplicationRecord
   belongs_to :partner, required: true
   belongs_to :bank,    required: true
 
+   accepts_nested_attributes_for :bank
+
   enum status: %w(active archived)
 
   validates :account, uniqueness: true, format: {with: /\A[\d+]{20}\Z/, message: "must be 20 digits"}

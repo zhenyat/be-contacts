@@ -27,7 +27,10 @@
 ################################################################################
 class Bank < ApplicationRecord
   include Emailable
-
+  
+  has_many :partner_banks
+  has_many :partners, through: :partner_banks
+  
   enum status: %w(active archived)
 
   validates :name,          presence: true, uniqueness: true

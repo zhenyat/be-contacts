@@ -35,4 +35,26 @@
               %td= value
       = render 'admin/shared/show_images', object: @partner
   = render 'admin/shared/show_rich_text_content', object: @partner
+
+  - if @partner.partner_banks.present?
+    %hr
+    %h5= 'Bank Requisites'
+    %table.table.table-striped
+      %tbody
+        %tr
+          %td= 'Расчетный счет'
+          %td= @partner.partner_banks.first.account
+        %tr
+          %td= 'В банке'
+          %td= @partner.partner_banks.first.bank.brief_title
+        %tr
+          %td= 'Корр. счет'
+          %td= @partner.partner_banks.first.bank.corr_acc
+        %tr
+          %td= 'БИК'
+          %td= @partner.partner_banks.first.bank.bic
+        %tr
+          %td= 'Комментарий'
+          %td= @partner.partner_banks.first.comment
+
   = render 'admin/shared/show_actions', object: @partner

@@ -11,10 +11,12 @@ class Admin::PartnersController < Admin::BaseController
 
   def new
     @partner = Partner.new
+    @partner.partner_banks.build.build_bank
     authorize @partner
   end
 
   def edit
+    @partner.partner_banks.build.build_bank
     authorize @partner
   end
 
@@ -55,6 +57,10 @@ class Admin::PartnersController < Admin::BaseController
 
     # Only allows a trusted parameter 'white list' through
     def partner_params
-      params.require(:partner).permit(:name, :code, :title, :kind, :role, :email, :url, :inn, :kpp, :ogrn, :ogrnip, :okpo, :okato, :certificate_number, :certificate_date, :status, :comment, :cover_image, :remove_cover_image, images: [])
+      params.require(:partner).permit(
+        :name, :code, :title, :kind, :role, :email, :url, :inn, :kpp, :ogrn, :ogrnip, :okpo, :okato, :certificate_number, :certificate_date, :status, :comment, :cover_image, :remove_cover_image, images: [],
+        partner_banks_attributes: [:id, :account, :comment, :bank_id, bank_attributes: [:id, :title]]
+      )
     end
 end
+# params.require(:patient).permit(:id, :name, appointments_attributes: [:id, :appointment_date, :doctor_id])

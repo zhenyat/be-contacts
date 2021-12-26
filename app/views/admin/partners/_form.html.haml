@@ -13,14 +13,6 @@
           = f.select :kind, options_for_select(@partner.class.translated_kinds.map { |translation, k, _v| [translation, k] }, @partner.kind), {}, class: "form-control"
           = f.label t('activerecord.attributes.partner.role')
           = f.select :role, options_for_select(@partner.class.translated_roles.map { |translation, k, _v| [translation, k] }, @partner.role), {}, class: "form-control"
-
-          /= f.input :kind, include_blank: false
-          /= f.input :kind, :as => :select, :collection => @partner.kinds_hash_localized, include_blank: false
-          /= f.input :kind, as: :select, collection: @partner.kinds_hash_localized.map { |key, val| [val, key] }, include_blank: false
-          /= f.input :kind, :collection => Partner.kinds, include_blank: false#.sort.map {|k,v| [v,k]}
-          /= f.input :kind, :as => :select, :collection => @partner.kinds_array_localized, include_blank: false
-          /= f.select :kind, options_for_select(Partner.kinds.map {|key, value| [key.titleize, Partner.kinds.key(value)]}, @partner.kind)
-          /= f.input :role, include_blank: false
           = f.input :email
           = f.input :url
           = f.input :inn
@@ -31,11 +23,20 @@
           = f.input :okato
           = f.input :certificate_number
           = f.input :certificate_date, include_blank: true
+          = f.input :comment
 
           = f.input :status, default: 0
           /= render 'admin/shared/status_buttons', f: f
-          = f.input :comment
 
           = render 'admin/shared/form_rich_text_content', f: f, object: @partner
           = render 'admin/shared/form_images', f: f, object: @partner
+
+          %hr
+          %h5= 'Create Bank account (if needed)'
+          = f.fields_for :partner_banks do |partner_bank_form|
+            = partner_bank_form.label :bank, "Bank"
+            = partner_bank_form.collection_select :bank_id, Bank.order(:title), :id, :title, {}, {class: "form-control"}
+            = partner_bank_form.input :account
+            = partner_bank_form.input :comment
+
           = render 'admin/shared/form_actions', f: f, object: @partner
